@@ -3,9 +3,7 @@ package idh.java;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Deque;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 public class Hanoi {
 

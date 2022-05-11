@@ -27,7 +27,8 @@ Der Benutzer gibt dabei immer zwei Buchstaben ein, einen für die Quelle (von wo
 
 Ihre Aufgabe besteht darin, die Klasse so fertig zu implementieren, dass das Spiel spielbar ist. Dazu müssen Sie eine geeignete Datenstruktur auswählen und in allen mit `TODO: Implement` markierten Methoden verwenden. Außerdem sollten Sie die Datenstruktur initialisieren, so dass am Anfang Scheiben der Größen 9 bis 1 auf dem linken Stab liegen.
 
-## Aufgabe 3
+## Aufgabe 2
+
 
 
 ----

@@ -20,14 +20,14 @@ public class Hanoi {
 		while (true) {
 			try {
 				System.out.println(this);
-				System.out.print("Enter source and target stick (will move top most piece):");
+				System.out.print("Enter source and target stick (will move top piece):");
 				String s = br.readLine();
 				if (s.matches("^([lmr])([lmr])$")) {
 					char source = s.charAt(0);
 					char target = s.charAt(1);
 					movePiece(source, target);
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				System.out.println("Try again, something's not right.");
 				e.printStackTrace();
 			} 

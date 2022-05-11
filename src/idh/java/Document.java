@@ -33,6 +33,20 @@ public class Document implements Iterable<String> {
 		this.documentText = documentText;
 	}
 	
+	public double ttr(Document d){ //auch ohne Document übergeben?
+		HashSet<String> x = new HashSet<String>();
+		double vergl = 0;
+		for (String token : d) {
+			vergl++;
+			x.add(token);
+		}
+		//System.out.println(vergl);
+		//System.out.println(x.size());
+		
+		return (x.size()/vergl);
+		
+	}
+	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
 		int i = 0;
@@ -41,6 +55,8 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println();
+		System.out.println("Der ttr ist "+ d.ttr(d));
 	}
 
 	@Override

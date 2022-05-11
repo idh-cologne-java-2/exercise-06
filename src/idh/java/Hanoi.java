@@ -4,15 +4,32 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Hanoi {
+	
+	Stack<Integer> turmL = new Stack<Integer>();
+	Stack<Integer> turmM = new Stack<Integer>();
+	Stack<Integer> turmR = new Stack<Integer>();
 
-	public Hanoi() {
+	public Hanoi(int[] numbers) {
 		// TODO: Implement
+		for(int i : numbers) {
+			turmL.add(i);
+		}
+		//turmM.add(0);
+		//turmR.add(0);
 	}
 	
 	private void movePiece(char from, char to) {
 		// TODO: Implement
+		int take = 0;
+		if(from == 'l') {take=turmL.lastElement(); turmL.pop();}
+		if(from == 'm') {take=turmM.lastElement(); turmM.pop();}
+		if(from == 'r') {take=turmR.lastElement(); turmR.pop();}
+		if(to == 'l') {  turmL.addElement(take);}
+		if(to == 'm') {  turmM.addElement(take);}
+		if(to == 'r') {  turmR.addElement(take);}
 	}
 	
 	public void run() {
@@ -36,17 +53,71 @@ public class Hanoi {
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return new Iterator<Integer>() {
+			Stack<Integer> nL = turmL;
+			int n = 0;
+
+			@Override
+			public boolean hasNext() {
+				// TODO Auto-generated method stub
+				return nL.size() > n;
+			}
+
+			@Override
+			public Integer next() {
+				// TODO Auto-generated method stub
+				int i = nL.get(n);;
+				n++;
+				return i;
+			}
+			
+		};
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return new Iterator<Integer>() {
+			Stack<Integer> nL = turmM;
+			int n = 0;
+
+			@Override
+			public boolean hasNext() {
+				// TODO Auto-generated method stub
+				return nL.size() > n;
+			}
+
+			@Override
+			public Integer next() {
+				// TODO Auto-generated method stub
+				int i = nL.get(n);
+				n++;
+				return i;
+			}
+			
+		};
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return new Iterator<Integer>() {
+			Stack<Integer> nL = turmR;
+			int n = 0;
+
+			@Override
+			public boolean hasNext() {
+				// TODO Auto-generated method stub
+				return nL.size() > n;
+			}
+
+			@Override
+			public Integer next() {
+				// TODO Auto-generated method stub
+				int i = nL.get(n);;
+				n++;
+				return i;
+			}
+			
+		};
 	}
 	
 	public String toString() {
@@ -75,7 +146,9 @@ public class Hanoi {
 	}
 	
 	public static void main(String[] args) {
-		Hanoi hanoi = new Hanoi();
+		
+		int[] n = {1,5,2};
+		Hanoi hanoi = new Hanoi(n);
 		hanoi.run();
 	}
 

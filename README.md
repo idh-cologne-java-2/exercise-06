@@ -35,6 +35,8 @@ In Übung 5 haben wir einen Iterator implementiert, der uns die Tokens eines Dok
 
 Fügen Sie der Klasse `Document` also eine Methode `ttr()` hinzu, die die TTR als double-Wert zurückgibt. Berechnen Sie sie mithilfe eines Set-Objektes.
 
+Zur Selbstkontrolle: Der Wert 0.1141 ist korrekt.
+
 ----
 
 Wenn Sie fertig sind, committen Sie alle Ihre Änderungen am Quellcode, und pushen Sie den neuen Branch auf das remote namens `origin` (= GitHub). 

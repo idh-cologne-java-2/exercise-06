@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 
 public class Document implements Iterable<String> {
 	String documentText;
+	
 
 	public static Document readFromFile(File f) throws IOException {
 		FileReader fileReader = new FileReader(f);
@@ -25,6 +26,26 @@ public class Document implements Iterable<String> {
 		return doc;
 	}
 	
+	public static double ttr(String file) throws IOException {
+		
+		double tter = 0; 
+		HashSet<String> s = new HashSet<String>();
+		Document d =Document.readFromFile(new File(file));
+		double i = 0;
+		for(String token : d ) {
+			
+			s.add(token);
+			i++;
+		}
+		
+		tter = s.size() / i;
+		
+		
+		
+		
+		return tter;
+	}
+	
 	public String getDocumentText() {
 		return documentText;
 	}
@@ -34,6 +55,7 @@ public class Document implements Iterable<String> {
 	}
 	
 	public static final void main(String[] args) throws IOException {
+	System.out.print(ttr("data/dracula.txt"));	
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
 		int i = 0;
 		for (String token : d) {

@@ -1,21 +1,83 @@
 package idh.java;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Iterator;
+import java.util.*;
 
 public class Hanoi {
+	Stack<Integer> l = new Stack<Integer>();
+	Stack<Integer> m = new Stack<Integer>();
+	Stack<Integer> r = new Stack <Integer>(); 
+	
+ // we need 3 stacks that are storing the int data 
 
 	public Hanoi() {
-		// TODO: Implement
+		l.add(9);
+		l.add(8);
+		l.add(7);
+		l.add(6);
+		l.add(4);
+		l.add(3);
+		l.add(2);
+		l.add(1);
+//todo
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		if(from == 'l' && to == 'm') {
+			if(!m.empty() && m.peek() < l.peek()) {
+				System.out.print("ne bro mach nicht diesen immer klein auf groß");
+			}else {
+				m.push(l.pop());
+			}
+		} 
+		
+		if(from == 'l' && to == 'r') {
+			if(!r.empty() && r.peek() < l.peek()) {
+				System.out.print("ne bro mach nicht diesen immer klein auf groß");
+			}else {
+				r.push(l.pop());
+			}
+		}
+		
+		if(from == 'm' && to == 'l') {
+			if(!l.empty() && l.peek() < m.peek()) {
+				System.out.print("ne bro mach nicht diesen immer klein auf groß");
+			}else {
+				l.push(m.pop());
+			}
+		}
+		
+		if(from == 'm' && to == 'r') {
+			if(!r.empty() && r.peek() < m.peek()) {
+				System.out.print("ne bro mach nicht diesen immer klein auf groß");
+			}else {
+				r.push(m.pop());
+			}
+		}
+		if(from == 'r' && to == 'm') {
+			if(!m.empty() && m.peek() < r.peek()) {
+				System.out.print("ne bro mach nicht diesen immer klein auf groß");
+			}else {
+				m.push(r.pop());
+			}
+		}
+		if(from == 'r' && to == 'l') {
+			if(!r.empty() && m.peek() < r.peek()) {
+				System.out.print("ne bro mach nicht diesen immer klein auf groß");
+			}else {
+				l.push(r.pop());
+			}
+		}
+		
+		
+		
 	}
 	
 	public void run() {
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			try {
@@ -30,23 +92,23 @@ public class Hanoi {
 			} catch (Exception e) {
 				System.out.println("Try again, something's not right.");
 				e.printStackTrace();
+				break;
 			} 
 		}
 	}
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return l.iterator();
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
-		// TODO: Implement
-		return null;
+		
+		return m.iterator();
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
-		// TODO: Implement
-		return null;
+		
+		return r.iterator();
 	}
 	
 	public String toString() {

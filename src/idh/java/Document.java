@@ -61,6 +61,22 @@ public class Document implements Iterable<String> {
 			
 		};
 	}
-	
+
+	public double ttr(String file) throws IOException {
+		
+		double tter = 0; 
+		HashSet<String> s = new HashSet<String>();
+		Document d =Document.readFromFile(new File(file));
+		double i = 0;
+		for(String token : d ) {
+			
+			s.add(token);
+			i++;
+		}
+		
+		tter = s.size();
+		
+		return tter;
+	}
 	
 }

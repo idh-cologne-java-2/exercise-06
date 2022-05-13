@@ -33,8 +33,20 @@ public class Document implements Iterable<String> {
 		this.documentText = documentText;
 	}
 	
+	public double ttr() throws IOException {
+		Set<String> tokenSet = new HashSet<String>();
+		Document d = Document.readFromFile(new File("data/dracula.txt"));
+		int counter = 0;
+		for (String token : d) {
+			tokenSet.add(token);
+			counter++;
+		}
+		return (double)tokenSet.size() / (double)counter;
+	}
+	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
+		System.out.print(d.ttr());
 		int i = 0;
 		for (String token : d) {
 			System.out.println(i++ + ": " + token + " ");

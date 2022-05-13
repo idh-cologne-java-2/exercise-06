@@ -1,18 +1,128 @@
 package idh.java;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Hanoi {
 
+	
+	Stack<Integer> l = new Stack<Integer>();
+	Stack<Integer> m = new Stack<Integer>();
+	Stack<Integer> r = new Stack<Integer>();
+	
 	public Hanoi() {
-		// TODO: Implement
+		l.push(9);
+		l.push(8);
+		l.push(7);
+		l.push(6);
+		l.push(5);
+		l.push(4);
+		l.push(3);
+		l.push(2);
+		l.push(1);
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		int chosen = 0;
+		int upperItem;
+		if(from == 'l') {
+			if(l.empty()) {
+				System.out.println("There is no piece on the stack");
+			}
+			else {
+				chosen = l.pop();
+			}
+			
+		}
+		else if(from == 'm') {
+			if(m.empty()) {
+				System.out.println("There is no piece on the stack");
+			}
+			else {
+				chosen = m.pop();
+			}
+		}
+		else {
+			if(r.empty()) {
+				System.out.println("There is no piece on the stack");
+			}
+			else {
+				chosen = r.pop();
+			}
+		}
+		if(chosen != 0) {
+			if(to == 'l') {
+				if(l.empty()) {
+					upperItem = 100;
+				}
+				else {
+					upperItem = l.peek();
+				}
+				if(upperItem > chosen) {
+					l.push(chosen);
+				}
+				else {
+					System.out.println("Can't put a bigger piece on a smaller one");
+					if(from == 'l') {
+						l.push(chosen);
+					}
+					else if(from == 'm') {
+						m.push(chosen);
+					}
+					else {
+						r.push(chosen);
+					}
+				}
+			}
+			else if(to == 'm') {
+				if(m.empty()) {
+					upperItem = 100;
+				}
+				else {
+					upperItem = m.peek();
+				}
+				if(upperItem > chosen) {
+					m.push(chosen);
+				}
+				else {
+					System.out.println("Can't put a bigger piece on a smaller one");
+					if(from == 'l') {
+						l.push(chosen);
+					}
+					else if(from == 'm') {
+						m.push(chosen);
+					}
+					else {
+						r.push(chosen);
+					}
+				}
+			}
+			else {
+				if(r.empty()) {
+					upperItem = 100;
+				}
+				else {
+					upperItem = r.peek();
+				}
+				if(upperItem > chosen) {
+					r.push(chosen);
+				}
+				else {
+					System.out.println("Can't put a bigger piece on a smaller one");
+					if(from == 'l') {
+						l.push(chosen);
+					}
+					else if(from == 'm') {
+						m.push(chosen);
+					}
+					else {
+						r.push(chosen);
+					}
+				}
+			}
+		}
 	}
 	
 	public void run() {
@@ -35,18 +145,18 @@ public class Hanoi {
 	}
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+		Iterator<Integer> iteratorl = l.iterator() ;
+		return iteratorl;
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
-		// TODO: Implement
-		return null;
+		Iterator<Integer> iteratorm = m.iterator() ;
+		return iteratorm;
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
-		// TODO: Implement
-		return null;
+		Iterator<Integer> iteratorr = r.iterator() ;
+		return iteratorr;
 	}
 	
 	public String toString() {

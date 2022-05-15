@@ -24,16 +24,42 @@ public class Hanoi {
 	}
 	
 	private void movePiece(char from, char to) {
+		Stack<Integer> source;
+		Stack<Integer> target;
 
+		switch (from) {
+			case 'l' -> source = leftStack;
+			case 'm' -> source = middleStack;
+			case 'r' -> source = rightStack;
+			default -> throw new RuntimeException();
+		}
+
+		switch (to) {
+			case 'l' -> target = leftStack;
+			case 'm' -> target = middleStack;
+			case 'r' -> target = rightStack;
+			default -> throw new RuntimeException();
+		}
+
+		if (!source.empty() && source.peek() < target.peek()){
+
+			//auf target die oberste Scheibe von source legen
+			target.push(source.pop());
+		}
+		else if (source.empty() && source.peek() > target.peek()){
+			System.out.println("Diese Aktion ist nicht möglich, versuche es erneut");
+		}
 	}
 	
-	public void run() {
+	public void run(){
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
 		while (true) {
 			try {
 				System.out.println(this);
 				System.out.print("Enter source and target stick (will move top piece):");
 				String s = br.readLine();
+
 				if (s.matches("^([lmr])([lmr])$")) {
 					char source = s.charAt(0);
 					char target = s.charAt(1);
@@ -85,7 +111,7 @@ public class Hanoi {
 		return b.toString();
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		Hanoi hanoi = new Hanoi();
 		hanoi.run();
 	}

@@ -41,13 +41,18 @@ public class Hanoi {
 			default -> throw new RuntimeException();
 		}
 
-		if (!source.empty() && source.peek() < target.peek()){
-
-			//auf target die oberste Scheibe von source legen
-			target.push(source.pop());
+		if(source.empty()){
+			System.out.println("Der Stapel ist leer!");
+			return;
 		}
-		else if (source.empty() && source.peek() > target.peek()){
-			System.out.println("Diese Aktion ist nicht möglich, versuche es erneut");
+
+		if(target.isEmpty() || source.peek()< target.peek()){
+			target.push(source.pop());
+			return;
+		}
+
+		if (source.peek() > target.peek()){
+			System.out.println("Du darfst keine größere auf eine kleinere Scheibe tun");
 		}
 	}
 	

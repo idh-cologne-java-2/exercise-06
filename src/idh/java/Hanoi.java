@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -13,21 +14,39 @@ public class Hanoi {
 	Stack<Integer> leftTower = new Stack<Integer>();
 	Stack<Integer> middleTower = new Stack<Integer>();
 	Stack<Integer> rightTower = new Stack<Integer>();
+	
+	public Stack<Integer> getStack(char id){
+		switch(id) {
+		case 'l': return leftTower;
+		case 'm': return middleTower;
+		case 'r': return rightTower;
+		default: return null;
+		}
+	}
 
 	
 	public Hanoi() {
 		
-		ArrayList<Integer> al = new ArrayList<Integer>(9);
-		for(int i = 0; i < al.size(); i++) {
-			al.add(i + 1);
+		for(int i = 1; i < 10; i++) {
+			leftTower.push(i);
 		}
 	}
 	
 		
-	private void movePiece(char from, char to) {
+	private void movePiece(char from, char to) throws EmptyStackException, Exception {
 		
-		movePiece(from, to);
+		if(this.getStack(from).empty()) throw new EmptyStackException();
+		if (this.getStack(to).empty()) {
+			this.getStack(to).push(this.getStack(from).pop());
+			System.out.println("Moved piece from " + from + " to " + to + ".");
+			return;
+		}
+		if (this.getStack(from).peek() > this.getStack(to).peek()) {
+			throw new Exception();
+		}
+		this.getStack(to).push(this.getStack(from).pop());
 		System.out.println("Moved piece from " + from + " to " + to + ".");
+		return;
 		
 	}	
 	

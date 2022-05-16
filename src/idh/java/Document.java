@@ -3,6 +3,7 @@ package idh.java;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -41,6 +42,8 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println(d.ttr());
+		
 	}
 
 	@Override
@@ -60,7 +63,29 @@ public class Document implements Iterable<String> {
 			}
 			
 		};
-	}
+	}	
 	
+	public double ttr() throws IOException {
+		
+		Document d = Document.readFromFile(new File("data/dracula.txt"));
+		double i = 0;
+		HashSet<String> hs = new HashSet<String>();
+		ArrayList<String> al = new ArrayList<String>();
+		
+		for(String token : d) {
+			hs.add(token);
+			al.add(token);
+			i++;
+		}
+		
+		System.out.println(hs.size());
+		System.out.println(al.size());
+		
+		double hssize = hs.size();
+		double alsize = al.size();
+		double ttr = hssize / alsize;
+		return ttr;
+		
+	}
 	
 }

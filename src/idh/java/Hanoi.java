@@ -3,17 +3,33 @@ package idh.java;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Hanoi {
+	
+	
+	Stack<Integer> leftTower = new Stack<Integer>();
+	Stack<Integer> middleTower = new Stack<Integer>();
+	Stack<Integer> rightTower = new Stack<Integer>();
 
+	
 	public Hanoi() {
-		// TODO: Implement
+		
+		ArrayList<Integer> al = new ArrayList<Integer>(9);
+		for(int i = 0; i < al.size(); i++) {
+			al.add(i + 1);
+		}
 	}
 	
+		
 	private void movePiece(char from, char to) {
-		// TODO: Implement
-	}
+		
+		movePiece(from, to);
+		System.out.println("Moved piece from " + from + " to " + to + ".");
+		
+	}	
 	
 	public void run() {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -33,21 +49,74 @@ public class Hanoi {
 			} 
 		}
 	}
-	
+
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+		
+		return new Iterator<Integer>() {
+			Stack<Integer> lT = leftTower;
+			int i = 0;
+
+			@Override
+			public boolean hasNext() {
+				return lT.size() > i;
+			}
+
+			@Override
+			public Integer next() {
+				int n = lT.get(i);;
+				i++;
+				return n;
+			}
+			
+		};
 
 	}
+
+	
 	private Iterator<Integer> getMiddleDescendingIterator() {
-		// TODO: Implement
-		return null;
+		
+		return new Iterator<Integer>() {
+			Stack<Integer> mT = middleTower;
+			int i = 0;
+
+			@Override
+			public boolean hasNext() {
+				return mT.size() > i;
+			}
+
+			@Override
+			public Integer next() {
+				int n = mT.get(i);;
+				i++;
+				return n;
+			}
+			
+		};
 
 	}
+	
 	private Iterator<Integer> getRightDescendingIterator() {
-		// TODO: Implement
-		return null;
+		
+		return new Iterator<Integer>() {
+			Stack<Integer> rT = rightTower;
+			int i = 0;
+
+			@Override
+			public boolean hasNext() {
+				return rT.size() > i;
+			}
+
+			@Override
+			public Integer next() {
+				int n = rT.get(i);;
+				i++;
+				return n;
+			}
+			
+		};
 	}
+	
+	
 	
 	public String toString() {
 		StringBuilder b = new StringBuilder();
@@ -73,6 +142,8 @@ public class Hanoi {
 		b.append("\n  |");
 		return b.toString();
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		Hanoi hanoi = new Hanoi();

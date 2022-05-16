@@ -35,12 +35,13 @@ public class Document implements Iterable<String> {
 	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
-		int i = 0;
-		for (String token : d) {
-			System.out.println(i++ + ": " + token + " ");
-			if (i > 100)
-				break;
-		}
+//		int i = 0;
+//		for (String token : d) {
+//			System.out.println(i++ + ": " + token + " ");
+//			if (i > 100)
+//				break;
+//		}
+		System.out.println(d.getTypeToTokenRatio());
 	}
 
 	@Override
@@ -62,5 +63,17 @@ public class Document implements Iterable<String> {
 		};
 	}
 	
+	public float getTypeToTokenRatio() {
+		float uniqueWords = 0f;
+		float totalWords = 0f;
+		Set<String> tokenSet = new HashSet<String>();
+		for (String s : this) {
+			totalWords++;
+			if (tokenSet.add(s)) {
+				uniqueWords++;
+			}
+		}
+		return uniqueWords / totalWords;
+	}
 	
 }

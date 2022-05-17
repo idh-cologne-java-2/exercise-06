@@ -41,8 +41,20 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println(d.ttr(d));
 	}
-
+	
+	public double ttr(Document d) {
+		HashSet<String> Hash = new HashSet<String>();	
+		double i = 0;
+		for(String token : d) {
+			Hash.add(token);
+			i++;
+		}
+			return ((double)Hash.size())/i;
+		
+	}
+	
 	@Override
 	public Iterator<String> iterator() {
 		return new Iterator<String>() {
@@ -61,6 +73,5 @@ public class Document implements Iterable<String> {
 			
 		};
 	}
-	
 	
 }

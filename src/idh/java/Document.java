@@ -1,3 +1,4 @@
+// Tim Schäfer 7380391
 package idh.java;
 
 import java.io.File;
@@ -33,6 +34,20 @@ public class Document implements Iterable<String> {
 		this.documentText = documentText;
 	}
 	
+	public double ttr() {
+		Document d = this;
+		double zaehler = 0;
+		HashSet<String> Hash = new HashSet<String>();
+		
+		for(String token : d) {
+			Hash.add(token);
+			zaehler++;
+		}
+		
+		return ((double)Hash.size())/zaehler;
+		
+	}
+	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
 		int i = 0;
@@ -41,6 +56,7 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println("The TTR is: " + d.ttr());
 	}
 
 	@Override

@@ -28,6 +28,18 @@ public class Document implements Iterable<String> {
 	public String getDocumentText() {
 		return documentText;
 	}
+		
+	public double trr() throws IOException {
+		Set<String> tokenSet = new HashSet<String>();
+		Document d = Document.readFromFile(new File("data/dracula.txt"));
+		int c = 0;
+		for (String token : d) {
+			tokenSet.add(token);
+			c++;
+		}
+		return (double)tokenSet.size() / (double)c;   
+	}
+	
 
 	public void setDocumentText(String documentText) {
 		this.documentText = documentText;

@@ -32,6 +32,20 @@ public class Document implements Iterable<String> {
 	public void setDocumentText(String documentText) {
 		this.documentText = documentText;
 	}
+	public double ttr() {
+		Document d = this;
+		double zaehler = 0;
+		HashSet<String> Hash = new HashSet<String>();
+
+		for(String token : d) {
+			Hash.add(token);
+			zaehler++;
+		}
+
+		return ((double)Hash.size())/zaehler;
+
+	}
+
 	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));

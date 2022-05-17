@@ -42,7 +42,11 @@ public class Document implements Iterable<String> {
 				break;
 		}
 	}
-
+	
+	public static double ttr(String token) {
+		return 0;
+	}
+	
 	@Override
 	public Iterator<String> iterator() {
 		return new Iterator<String>() {
@@ -61,6 +65,5 @@ public class Document implements Iterable<String> {
 			
 		};
 	}
-	
 	
 }

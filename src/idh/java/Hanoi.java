@@ -3,16 +3,57 @@ package idh.java;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Hanoi {
-
+	Stack <Integer> stackl = new Stack<Integer>();
+	Stack <Integer> stackm = new Stack<Integer>();
+	Stack <Integer> stackr = new Stack<Integer>();
+	ArrayList<Stack<Integer>> stacks = new ArrayList<Stack<Integer>>();
+	
 	public Hanoi() {
-		// TODO: Implement
+		for (int i = 9; i > 0; i--) {
+			stackl.add(i);
+		}
+		stacks.add(stackl);
+		stacks.add(stackm);
+		stacks.add(stackr);
+			
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		int i = 0;
+		int j = 0;
+		switch (from) {
+		case 'l':
+		   i = 0;
+		  break;
+		case 'm':
+		   i = 1;
+		  break;
+		case 'r':
+		  i = 2;
+		  break;
+		}
+		switch (to) {
+		case 'l':
+		  j = 0;
+		  break;
+		case 'm':
+		  j = 1;
+		  break;
+		case 'r':
+		  j = 2;
+	      break;
+		}	
+	if (stacks.get(j).isEmpty() || (stacks.get(j).peek() > stacks.get(i).peek())) {
+		stacks.get(j).push(stacks.get(i).pop()); 
+	}
+	else {
+	System.out.println("Against the rules!");	
+	}
 	}
 	
 	public void run() {
@@ -27,6 +68,10 @@ public class Hanoi {
 					char target = s.charAt(1);
 					movePiece(source, target);
 				}
+				if (stackl.isEmpty() && stackm.isEmpty()) {
+					System.out.println("You have won!");
+					break;
+				}
 			} catch (Exception e) {
 				System.out.println("Try again, something's not right.");
 				e.printStackTrace();
@@ -35,18 +80,51 @@ public class Hanoi {
 	}
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return new Iterator<Integer>() {
+			int i = 0;
+			@Override
+			public boolean hasNext() {
+				return  i < stacks.get(0).size();
+			}
+
+			@Override
+			public Integer next() {
+			return stacks.get(0).get(i++);
+			}
+			
+		};
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return new Iterator<Integer>() {
+			int i = 0;
+			@Override
+			public boolean hasNext() {
+				return  i < stacks.get(1).size();
+			}
+
+			@Override
+			public Integer next() {
+			return stacks.get(1).get(i++);
+			}
+			
+		};
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return new Iterator<Integer>() {
+			int i = 0;
+			@Override
+			public boolean hasNext() {
+				return  i < stacks.get(2).size();
+			}
+
+			@Override
+			public Integer next() {
+			return stacks.get(2).get(i++);
+			}
+			
+		};
 	}
 	
 	public String toString() {

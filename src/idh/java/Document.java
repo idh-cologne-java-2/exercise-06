@@ -41,6 +41,7 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println("The TTR is: " + d.ttr());
 	}
 
 	@Override
@@ -60,7 +61,22 @@ public class Document implements Iterable<String> {
 			}
 			
 		};
+	
 	}
+	
+	public Double ttr() {
+		Document d = this;
+		double zaehler = 0;
+		HashSet<String> Hash = new HashSet<String>();
+		
+		for(String token : d) {
+			Hash.add(token);
+			zaehler++;
+		}
+		
+		return ((double)Hash.size())/zaehler;
+		
+	};
 	
 	
 }

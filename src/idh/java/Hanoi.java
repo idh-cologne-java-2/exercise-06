@@ -4,15 +4,91 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Hanoi {
+	Stack<Integer> l = new Stack<Integer>();
+	Stack<Integer> m = new Stack<Integer>();
+	Stack<Integer> r = new Stack<Integer>();
 
 	public Hanoi() {
-		// TODO: Implement
+		int i = 9;
+		while (l.peek() != 1) {
+			l.push(i--);
+		}
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		if(from == 'l') {
+			if(to == 'l') {
+				System.out.println("Try again, something's not right.");
+			}
+			else if(to == 'm') {
+				if(l.peek() < m.peek()) {
+					m.push(l.peek());
+					l.pop();
+				}
+				else {
+					System.out.println("Try again, something's not right.");
+				}
+			}
+			else if(to == 'r') {
+				if(l.peek() < r.peek()) {
+					r.push(l.peek());
+					l.pop();
+				}
+				else {
+					System.out.println("Try again, something's not right.");
+				}	
+			}
+		}
+		else if(from == 'm') {
+			if(to == 'l') {
+				if(m.peek() < l.peek()) {
+					l.push(m.peek());
+					m.pop();
+				}
+				else {
+					System.out.println("Try again, something's not right.");
+				}				
+			}
+			if(to == 'm') {
+				System.out.println("Try again, something's not right.");
+			}
+			if(to == 'r') {
+				if(m.peek() < r.peek()) {
+					r.push(m.peek());
+					m.pop();
+				}
+				else {
+					System.out.println("Try again, something's not right.");
+				}
+			}
+			
+		}
+		else if(from == 'r') {
+			if(to == 'l') {
+				if(r.peek() < l.peek()) {
+					l.push(r.peek());
+					r.pop();
+				}
+				else {
+					System.out.println("Try again, something's not right.");
+				}				
+			}
+			else if(to == 'm') {
+				if(r.peek() < m.peek()) {
+					m.push(r.peek());
+					r.pop();
+				}
+				else {
+					System.out.println("Try again, something's not right.");
+				}				
+			}
+			else if(to == 'r') {
+				System.out.println("Try again, something's not right.");				
+			}
+		}
 	}
 	
 	public void run() {
@@ -35,18 +111,15 @@ public class Hanoi {
 	}
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return l.iterator();
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return m.iterator();
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return r.iterator();
 	}
 	
 	public String toString() {

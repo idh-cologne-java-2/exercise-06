@@ -1,3 +1,7 @@
+/**
+ * @author felix
+ *
+ */
 package idh.java;
 
 import java.io.File;
@@ -7,6 +11,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.StringTokenizer;
+
 
 public class Document implements Iterable<String> {
 	String documentText;
@@ -33,16 +38,32 @@ public class Document implements Iterable<String> {
 		this.documentText = documentText;
 	}
 	
+	public double ttr() {
+		Document d = this;
+		double counter = 0;
+		HashSet<String> Hash = new HashSet<String>();
+		
+		
+		for(String token : d) {
+			Hash.add(token);
+			counter++;
+		}
+		
+		return ((double)Hash.size())/counter;
+		
+	}
+	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
 		int i = 0;
-		for (String token : d) {
-			System.out.println(i++ + ": " + token + " ");
+		for (String word : d) {
+			System.out.println(i++ + ": " + word + " ");
 			if (i > 100)
 				break;
+			
 		}
+		System.out.println("The TTR is: " + d.ttr());
 	}
-
 	@Override
 	public Iterator<String> iterator() {
 		return new Iterator<String>() {
@@ -61,6 +82,5 @@ public class Document implements Iterable<String> {
 			
 		};
 	}
-	
 	
 }

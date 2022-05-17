@@ -1,18 +1,66 @@
+/**
+ * @author felix
+ *
+ */
+
 package idh.java;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.Stack;
+
 
 public class Hanoi {
+	
+	public Stack<Integer> leftStack = new Stack<Integer>();
+	public Stack<Integer> midStack = new Stack<Integer>();
+	public Stack<Integer> rightStack = new Stack<Integer>();
 
 	public Hanoi() {
-		// TODO: Implement
+		for(int i = 9;i > 0; i--) {
+			leftStack.push(i);
+		}
+	}
+	public Stack<Integer> getStack(char stick) {
+		
+		if (stick == 'l') {
+			return leftStack;
+		}			
+		if (stick == 'm') {
+			return midStack;
+		}
+		if (stick == 'r') {
+			return rightStack;
+		}
+		else
+			return null;
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		
+		Stack<Integer> fromStack = getStack(from);
+		Stack<Integer> toStack = getStack(to);
+		
+		if(fromStack.empty()) {
+			System.out.println("This stick has no pieces");
+			return;
+		}
+		if(toStack.empty()){
+			toStack.push(fromStack.pop());
+			return;
+		}
+			
+		if(toStack.peek() > fromStack.peek()) {
+			
+			toStack.push(fromStack.pop());
+			
+		}else {
+			System.out.println("Impossible Move!");
+		}
+		
+		
 	}
 	
 	public void run() {
@@ -35,18 +83,64 @@ public class Hanoi {
 	}
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+		
+		return new Iterator<Integer>(){
+			Stack<Integer> ls = leftStack;
+			int i = 0;
+
+			@Override
+			public boolean hasNext() {
+				return ls.size() > i;
+			}
+
+			@Override
+			public Integer next() {
+				int helpInt = ls.get(i);
+				i++;
+				return helpInt;
+			}
+			
+		};
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return new Iterator<Integer>(){
+			Stack<Integer> ms = midStack;
+			int i = 0;
+
+			@Override
+			public boolean hasNext() {
+				return ms.size() > i;
+			}
+
+			@Override
+			public Integer next() {
+				int helpInt = ms.get(i);
+				i++;
+				return helpInt;
+			}
+			
+		};
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return new Iterator<Integer>(){
+			Stack<Integer> rs = rightStack;
+			int i = 0;
+
+			@Override
+			public boolean hasNext() {
+				return rs.size() > i;
+			}
+
+			@Override
+			public Integer next() {
+				int helpInt = rs.get(i);
+				i++;
+				return helpInt;
+			}
+			
+		};
 	}
 	
 	public String toString() {

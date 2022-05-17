@@ -41,6 +41,8 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		
+		ttr(d);   
 	}
 
 	@Override
@@ -61,6 +63,20 @@ public class Document implements Iterable<String> {
 			
 		};
 	}
+	
+	public static double ttr(Document document) {
+ 		Set<String> types = new HashSet<>();     
+ 		double tokens = 0;						  
+ 		for (String s : document) {				  
+ 			types.add(s);						 
+ 			tokens++;							 
+ 		}
+ 		double result = types.size() / tokens;	  
+
+ 		System.out.println("The Type-Token-Relation is: " + result); 
+
+ 		return result;							  
+ 	}
 	
 	
 }

@@ -24,7 +24,7 @@ public class Hanoi {
 	}
 	
 	private void movePiece(char from, char to) {
-		Stack<Integer> source = null ;
+		Stack<Integer> source = null;
 		Stack<Integer> target = null;
 
 		switch (from) {

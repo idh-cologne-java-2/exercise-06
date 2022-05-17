@@ -40,8 +40,13 @@ public class Document implements Iterable<String> {
 			System.out.println(i++ + ": " + token + " ");
 			if (i > 100)
 				break;
+			
 		}
+		
+			ttr(d);   //Aufruf der ttr-Methode mit dem Dracula Text
+		
 	}
+	
 
 	@Override
 	public Iterator<String> iterator() {
@@ -62,5 +67,18 @@ public class Document implements Iterable<String> {
 		};
 	}
 	
+	public static double ttr(Document document) { //Type-Token-Relation Methode der man ein Dokument übergeben muss
+		Set<String> types = new HashSet<>();      //Set-Objekt, unsortiertes HashSet mit einzigartigen Einträgen (Types)
+		double tokens = 0;						  //Variable für alle Tokens
+		for (String s : document) {				  //for-each Schleife
+			types.add(s);						  //jeder einzigartige Eintrag wird in das HashSet eingetragen
+			tokens++;							  //bei jedem Durchgang wird die Anzahl der Tokens (alle Wörter) erhöht
+		}
+		double result = types.size() / tokens;	  //wir müssen die Anzahl der Types durch die Anzahl der Tokens teilen
+		
+		System.out.println("The Type-Token-Relation is: " + result); //Consolen Ausgabe zur Überprüfung
+		
+		return result;							  //Ergebnis als dounle-Wert
+	}
 	
 }

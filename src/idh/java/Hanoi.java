@@ -4,15 +4,54 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Hanoi {
-
+	Stack<Integer> leftStack = new Stack<>();
+	Stack<Integer> middleStack = new Stack<>();
+	Stack<Integer> rightStack = new Stack<>();
+	
 	public Hanoi() {
-		// TODO: Implement
+		leftStack.push(9);
+		leftStack.push(8);
+		leftStack.push(7);
+		leftStack.push(6);
+		leftStack.push(5);
+		leftStack.push(4);
+		leftStack.push(3);
+		leftStack.push(2);
+		leftStack.push(1);
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		Stack<Integer> source = null ;
+		Stack<Integer> target = null;
+
+		switch (from) {
+			case 'l': source = leftStack;
+			case 'm': source = middleStack;
+			case 'r': source = rightStack;
+		}
+
+		switch (to) {
+			case 'l': target = leftStack;
+			case 'm': target = middleStack;
+			case 'r': target = rightStack;
+		}
+
+		if(source.empty()){
+			System.out.println("Der Stapel ist leer!");
+			return;
+		}
+
+		if(target.isEmpty() || source.peek()< target.peek()){
+			target.push(source.pop());
+			return;
+		}
+
+		if (source.peek() > target.peek()){
+			System.out.println("Du darfst keine größere auf eine kleinere Scheibe tun");
+		}
 	}
 	
 	public void run() {
@@ -35,18 +74,15 @@ public class Hanoi {
 	}
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return leftStack.iterator();
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return middleStack.iterator();
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return rightStack.iterator();
 	}
 	
 	public String toString() {

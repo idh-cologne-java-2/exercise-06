@@ -41,6 +41,8 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		// ruft Methode ttr auf
+		ttr(d);
 	}
 
 	@Override
@@ -62,5 +64,21 @@ public class Document implements Iterable<String> {
 		};
 	}
 	
+	public static double ttr(Document document){
+		
+		//Benutzung von HashSet um keine doppelten Elemente auszugeben
+		Set<String> types = new HashSet<>();	
+		double tokens = 0;
+		
+		for(String s : document) {
+			types.add(s);
+			tokens++;
+		}
+		
+		double result = types.size()/ tokens;  // Teilung der types durch die Tokens
+		
+		System.out.println("Type-token-Relation: " + result);
+		return result;
+	}
 	
 }

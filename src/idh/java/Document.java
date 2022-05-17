@@ -41,6 +41,21 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println("The Type-Token-Relation is: " + d.ttr());
+	}
+	
+	public double ttr() {
+		Document d = this;
+		double counter = 0;
+		HashSet<String> Hash = new HashSet<String>();
+		
+		for(String token : d) {
+			Hash.add(token);
+			counter++;
+		}
+		
+		return ((double)Hash.size())/counter;
+		
 	}
 
 	@Override

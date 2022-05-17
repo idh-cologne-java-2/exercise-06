@@ -4,15 +4,114 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Hanoi {
+	Stack <Integer> stackl = new Stack<Integer>();
+	Stack <Integer> stackm = new Stack<Integer>();
+	Stack <Integer> stackr = new Stack<Integer>();
 
 	public Hanoi() {
-		// TODO: Implement
+		for (int i = 9; i > 0; i--) {
+				stackl.push(i);
+		}
+		
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		int item;
+		int elementToMove;
+		
+		// from left stack to
+		if (from == 'l') {
+			elementToMove = stackl.peek();
+			
+			if(stackl.empty()) {
+				System.out.println("stack is empty");
+				
+			} else if (!stackl.empty()) {
+				
+				// middle
+				if (to == 'm') {
+					if (stackm.empty() || stackm.peek() > elementToMove) {
+						
+						item = stackl.pop();
+						stackm.push(item);
+					} else
+						System.out.println(stackm.peek() + " is smaller than " + elementToMove + "\nstack not possible");
+				}
+				// right
+				if (to == 'r') {
+					if (stackr.empty() || stackr.peek() > elementToMove) {
+						item = stackl.pop();
+						stackr.push(item);
+					}else
+						System.out.println(stackr.peek() + " is smaller than " + elementToMove + "\nstack not possible");
+				}
+			}
+				
+		}
+		
+		// from middle to
+		if(from == 'm') {
+			if(stackm.empty()) {
+				System.out.println("stack is empty");
+			}else if (!stackm.empty()) {
+				elementToMove = stackm.peek();
+				
+				// left
+				if (to == 'l') {
+					if(stackl.empty() || stackl.peek() > elementToMove) {
+						
+						item = stackm.pop();
+						stackl.push(item);
+					} else
+						System.out.println(stackm.peek() + " is smaller than " + elementToMove + "\nstack is not possible");
+				}
+				
+				// right
+				if (to == 'r') {
+					if (stackr.empty() || stackr.peek() > elementToMove) {
+						
+						item = stackm.pop();
+						stackr.push(item);
+						
+					} else
+						System.out.println(stackr.peek() + " is smaller than " + elementToMove + " \nstack is not possible");
+				}
+			}
+			
+		}
+		// from right stack to
+		if (from == 'r') {
+			if(stackr.empty())
+				System.out.println("stack is empty");
+			if(!stackr.empty()) {
+				
+				elementToMove = stackr.peek();
+				
+				// middle stack
+				if(to == 'm') {
+					if (stackm.empty() || stackm.peek() > elementToMove) {
+						
+						item = stackr.pop();
+						stackm.push(item);
+					}else
+						System.out.println(stackm.peek() + " is smaller than " + elementToMove + "\nstack is not possible");
+				}
+				
+			// right
+				if (to == 'r') {
+					if (stackr.empty() || stackr.peek() > elementToMove) {
+						
+						item = stackm.pop();
+						stackr.push(item);
+					}else
+						System.out.println(stackr.peek() + " is maller than " + elementToMove + " \nstack is not possible");
+				}
+			}
+			
+		}
 	}
 	
 	public void run() {
@@ -36,17 +135,17 @@ public class Hanoi {
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return stackl.iterator();
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return stackm.iterator();
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return stackr.iterator();
 	}
 	
 	public String toString() {

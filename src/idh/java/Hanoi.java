@@ -23,15 +23,15 @@ public class Hanoi {
 		}
 	}
 
-	public Stack<Integer> getStack (char label) {
+	public Stack<Integer> getStack (char stack) {
 		
-		 if ('l' == label) {
+		 if ('l' == stack) {
 			 return lStack;
 		 }
-		 if ('m' == label) {
+		 if ('m' == stack) {
 			 return mStack;
 		 }
-		 if ('r' == label) {
+		 if ('r' == stack) {
 			 return rStack;
 		 }
 		 else {

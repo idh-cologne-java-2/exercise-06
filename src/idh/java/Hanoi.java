@@ -1,18 +1,68 @@
 package idh.java;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Hanoi {
 
+	Stack<Integer> left = new Stack<Integer>();
+	Stack<Integer> middle = new Stack<Integer>();
+	Stack<Integer> right = new Stack<Integer>();
+	
 	public Hanoi() {
 		// TODO: Implement
+		for (int i = 9; i > 0; i--) {
+			left.push(i);
+		}
 	}
 	
 	private void movePiece(char from, char to) {
 		// TODO: Implement
+		Stack<Integer> source = new Stack<Integer>();
+		Stack<Integer> target = new Stack<Integer>();
+		
+		switch(from) {
+			case 'l':
+				source = left;
+				break;
+			
+			case 'm':
+				source = middle;
+				break;
+			
+			case 'r':
+				source = right;
+				break;
+		}
+		
+		switch(to) {
+			case 'l':
+				target = left;
+				break;
+			
+			case 'm':
+				target = middle;
+				break;
+			
+			case 'r':
+				target = right;
+				break;
+		}
+		
+		if(source.empty()) {
+			System.out.println("This stack is empty.");
+		}
+		
+		if(target.isEmpty() || source.peek() < target.peek()) {
+			target.push(source.pop());
+			return;
+		}
+		
+		if(source.peek() > target.peek()) {
+			System.out.println("You can't place a disk on top of a smaller disk.");
+		}
 	}
 	
 	public void run() {
@@ -36,17 +86,17 @@ public class Hanoi {
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return left.iterator();
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return middle.iterator();
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return right.iterator();
 	}
 	
 	public String toString() {

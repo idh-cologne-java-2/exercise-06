@@ -33,6 +33,18 @@ public class Document implements Iterable<String> {
 		this.documentText = documentText;
 	}
 	
+	public double ttr(Document document) {
+		Set<String> types = new HashSet<String>();
+		double tokens = 0;
+		
+		for (String s : document) {
+			types.add(s);
+			tokens++;
+		}
+		
+		return types.size() / tokens;
+	}
+	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
 		int i = 0;
@@ -41,8 +53,10 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		
+		System.out.println("The type–token distinction is: " + d.ttr(d));
 	}
-
+	
 	@Override
 	public Iterator<String> iterator() {
 		return new Iterator<String>() {
@@ -61,6 +75,5 @@ public class Document implements Iterable<String> {
 			
 		};
 	}
-	
-	
+
 }

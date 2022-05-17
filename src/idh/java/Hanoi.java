@@ -8,11 +8,13 @@ import java.util.Iterator;
 public class Hanoi {
 
 	public Hanoi() {
-		// TODO: Implement
+		getLeftDescendingIterator();
+		getRightDescendingIterator();
+		getMiddleDescendingIterator();
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+	from = 0;
 	}
 	
 	public void run() {

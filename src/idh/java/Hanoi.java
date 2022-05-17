@@ -1,5 +1,5 @@
 package idh.java;
-// Franziska Bauer
+// Franziska Bauer HA6
 
 import java.io.BufferedReader;
 import java.io.IOException;

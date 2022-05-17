@@ -11,16 +11,11 @@ public class Hanoi {
 	Stack<Integer> middleStack = new Stack<>();
 	Stack<Integer> rightStack = new Stack<>();
 	public Hanoi() {
+		int i = 8;
 		leftStack.push(9);
-		leftStack.push(8);
-		leftStack.push(7);
-		leftStack.push(6);
-		leftStack.push(5);
-		leftStack.push(4);
-		leftStack.push(3);
-		leftStack.push(2);
-		leftStack.push(1);
-
+		while (leftStack.peek() != 1) {
+			leftStack.push(i--);
+		}
 	}
 	
 	private void movePiece(char from, char to) {

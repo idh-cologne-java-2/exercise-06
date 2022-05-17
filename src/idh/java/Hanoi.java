@@ -1,3 +1,8 @@
+/**
+ * @author UntoadtedToast
+ *
+ */
+
 package idh.java;
 
 import java.io.BufferedReader;

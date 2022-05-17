@@ -44,7 +44,7 @@ public class Document implements Iterable<String> {
 		}
 		
 			ttr(d);   //Aufruf der ttr-Methode mit dem Dracula Text
-		
+						//don't know this kinda looks weird
 	}
 	
 

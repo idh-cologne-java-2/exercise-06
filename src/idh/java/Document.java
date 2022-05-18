@@ -41,6 +41,8 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		// Aufruf Methode und Parameterübergabe
+		ttr(d);
 	}
 
 	@Override
@@ -60,6 +62,26 @@ public class Document implements Iterable<String> {
 			}
 			
 		};
+	}
+	
+	public static double ttr(Document document) {
+		//Document document = this;
+		
+		// Implementation HashSet-Interface, d.h. es werden keine doppelten Elemente ausgegeben
+		HashSet<String> hashSet = new HashSet<String>();	
+		double counter = 0;
+		
+		for (String s : document) {
+			hashSet.add(s);
+			counter++;
+		}
+		
+		// Types werden durch die Token geteilt
+		double result = hashSet.size()/ counter;  
+		
+		System.out.println("Type-token-Relation: " + result);
+		return result;
+		
 	}
 	
 	

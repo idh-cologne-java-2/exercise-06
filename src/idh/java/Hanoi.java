@@ -4,16 +4,40 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Hanoi {
 
+	Stack<Integer> l = new Stack<Integer>();
+	
+	Stack<Integer> m = new Stack<Integer>();
+	
+	Stack<Integer> r = new Stack<Integer>();
+
+	int i;
+	
 	public Hanoi() {
-		// TODO: Implement
+		for(i = 9;i > 0; i--) 
+			l.push(i);
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		if (from == 'l' && to == 'm') {
+			m.push(l.pop());
+		} else if (from == 'l' && to == 'r'){
+			r.push(l.pop());
+		} else if (from == 'm' && to == 'r'){
+			r.push(m.pop());
+		} else if (from == 'm' && to == 'l'){
+			l.push(m.pop());
+		} else if (from == 'r' && to == 'l'){
+			m.push(r.pop());
+		} else if (from == 'r' && to == 'm'){
+			l.push(r.pop());
+		}
+		
 	}
+	
 	
 	public void run() {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,17 +59,42 @@ public class Hanoi {
 	}
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+		@Override
+		public boolean hasNext() {
+			//ToDo
+		}
 
+		@Override
+		public String next() {
+			//ToDo
+		}
+		return null;
 	}
+	
+
 	private Iterator<Integer> getMiddleDescendingIterator() {
-		// TODO: Implement
+		@Override
+		public boolean hasNext() {
+			//ToDo
+		}
+
+		@Override
+		public String next() {
+			//ToDO
+		}
 		return null;
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
-		// TODO: Implement
+		@Override
+		public boolean hasNext() {
+			//ToDo
+		}
+
+		@Override
+		public String next() {
+			//ToDo
+		}
 		return null;
 	}
 	

@@ -62,5 +62,16 @@ public class Document implements Iterable<String> {
 		};
 	}
 	
+	public double ttr() throws IOException {
+		Set<String> tokenSet = new HashSet<String>();
+		Document d = Document.readFromFile(new File("data/dracula.txt"));
+		int count = 0;
+		for (String token : d) {
+			tokenSet.add(token);
+			count++;
+		}
+		
+		return (double)tokenSet.size() / (double)count;
+	}
 	
 }

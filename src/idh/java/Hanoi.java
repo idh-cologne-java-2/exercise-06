@@ -4,15 +4,33 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Deque;
 
 public class Hanoi {
+	
+	Deque<Integer> l = new LinkedList<Integer>();
+	Deque<Integer> m = new LinkedList<Integer>();
+	Deque<Integer> r = new LinkedList<Integer>();
 
 	public Hanoi() {
-		// TODO: Implement
+		for (int i = 1; i < 10; i++) {
+			l.addLast(i);
+		}
 	}
 	
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		int i = 0;
+		switch(from) {
+			case 'l': i = l.poll(); break;
+			case 'm': i = m.poll(); break;
+			case 'r': i = r.poll(); break;
+		}
+		switch(to) {
+			case 'l': l.addFirst(i); break;
+			case 'm': m.addFirst(i); break;
+			case 'r': r.addFirst(i); break;
+		}
 	}
 	
 	public void run() {
@@ -35,18 +53,15 @@ public class Hanoi {
 	}
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return l.descendingIterator();
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return m.descendingIterator();
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
-		// TODO: Implement
-		return null;
+		return r.descendingIterator();
 	}
 	
 	public String toString() {

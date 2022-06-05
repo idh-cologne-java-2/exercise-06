@@ -41,6 +41,7 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println(d.ttr());
 	}
 
 	@Override
@@ -60,6 +61,16 @@ public class Document implements Iterable<String> {
 			}
 			
 		};
+	}
+	
+	public double ttr() {
+		Set<String> t = new HashSet<String>();
+		int i = 0;
+		for(String token : this) {
+			t.add(token);
+			i++;
+		}
+		return t.size() / (double) i;
 	}
 	
 	

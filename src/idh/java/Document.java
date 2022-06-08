@@ -10,8 +10,20 @@ import java.util.StringTokenizer;
 
 public class Document implements Iterable<String> {
 	String documentText;
-	public double ttr() {
 	
+	public double ttr() throws IOException {
+		Document d = Document.readFromFile(new File("data/dracula.txt"));
+		HashSet<String> type = new HashSet<String>();
+		
+			int i = 0;
+			for (String token : d) {
+				type.add(token);
+				i++;
+				}
+			double ttr = (type.size()/(double) i);
+			System.out.println("The Type-Token Ratio is: " + ttr);
+			return ttr;
+		
 	}
 
 
@@ -39,12 +51,14 @@ public class Document implements Iterable<String> {
 	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
+		d.ttr();
 		int i = 0;
 		for (String token : d) {
 			System.out.println(i++ + ": " + token + " ");
 			if (i > 100)
 				break;
-		}
+		} 
+		
 	}
 
 	@Override

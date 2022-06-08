@@ -8,33 +8,49 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Hanoi {
-	Deque<Integer> l = new LinkedList<Integer>();
+	Deque<Integer>  l = new LinkedList<Integer>();
 	Deque<Integer> m = new LinkedList<Integer>();
 	Deque<Integer> r = new LinkedList<Integer>();
 
 	public Hanoi() {
 		
 for (int i = 10; i > 0; i--){
-	l.add(i);
+	 l.add(i);
 	
 }
 	}
 	private void movePiece(char from, char to) {
 		
-		Integer pieceNumber = null;
+		Integer pieceNumber = l.element();
+	/* Lösung mit einer if-else Schleife	*/	
+		if (from == 'l'){
+			pieceNumber = l.pop();
+			}
 		
-		switch(from) {
+		if (from == 'm'){
+			pieceNumber = m.pop();
+			}
 		
-		case 'l' : pieceNumber = l.pop(); break;
-		case 'm' : pieceNumber = m.pop(); break; 
-		case 'r' : pieceNumber= r.pop(); break; 
-		}
+		if (from == 'r'){
+			pieceNumber = r.pop();
+			}
 		
-		switch(to) {
-		case 'l' : l.add(pieceNumber); break;
-		case 'm' : m.add(pieceNumber); break;
-		case 'r' : r.add(pieceNumber); break;
-		}
+		
+		if (to == 'l'){
+			l.add(pieceNumber);
+			}
+
+		if (to == 'm'){
+			m.add(pieceNumber);
+			}
+		if (to == 'r'){
+			r.add(pieceNumber);
+			}
+			
+		else {
+			System.out.println("try again");
+			}
+
 	}
 	
 	public void run() {
@@ -58,7 +74,7 @@ for (int i = 10; i > 0; i--){
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
 	
-		return l.iterator();
+		return  l.iterator();
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {

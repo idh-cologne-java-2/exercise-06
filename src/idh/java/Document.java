@@ -10,6 +10,10 @@ import java.util.StringTokenizer;
 
 public class Document implements Iterable<String> {
 	String documentText;
+	public double ttr() {
+	
+	}
+
 
 	public static Document readFromFile(File f) throws IOException {
 		FileReader fileReader = new FileReader(f);

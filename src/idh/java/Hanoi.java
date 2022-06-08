@@ -1,18 +1,40 @@
 package idh.java;
-
+import java.util.Stack;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Deque;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Hanoi {
+	Deque<Integer> l = new LinkedList<Integer>();
+	Deque<Integer> m = new LinkedList<Integer>();
+	Deque<Integer> r = new LinkedList<Integer>();
 
 	public Hanoi() {
-		// TODO: Implement
-	}
+		
+for (int i = 10; i > 0; i--){
+	l.add(i);
 	
+}
+	}
 	private void movePiece(char from, char to) {
-		// TODO: Implement
+		
+		Integer pieceNumber = null;
+		
+		switch(from) {
+		
+		case 'l' : pieceNumber = l.pop(); break;
+		case 'm' : pieceNumber = m.pop(); break; 
+		case 'r' : pieceNumber= r.pop(); break; 
+		}
+		
+		switch(to) {
+		case 'l' : l.add(pieceNumber); break;
+		case 'm' : m.add(pieceNumber); break;
+		case 'r' : r.add(pieceNumber); break;
+		}
 	}
 	
 	public void run() {
@@ -35,18 +57,18 @@ public class Hanoi {
 	}
 	
 	private Iterator<Integer> getLeftDescendingIterator() {
-		// TODO: Implement
-		return null;
+	
+		return l.iterator();
 
 	}
 	private Iterator<Integer> getMiddleDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return m.iterator();
 
 	}
 	private Iterator<Integer> getRightDescendingIterator() {
 		// TODO: Implement
-		return null;
+		return r.iterator();
 	}
 	
 	public String toString() {
